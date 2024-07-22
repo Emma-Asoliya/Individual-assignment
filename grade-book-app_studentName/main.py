@@ -25,3 +25,18 @@ class Course:
         self.credits =credits
 
 
+#Define the 'GradeBook' class
+class GradeBook
+    def __init__(self)
+        self.student_list = [] #list to store all the students
+        self.course_list = [] #List to store all courses
+
+    def add_student(self, email, names):
+        student = Student(email, names)
+        self.student_list.append(student) #adds the studemt to student list
+        return student 
+
+    def add_course(self, name, trimester, credits):
+        course = Course(name, trimester, credits)
+        self.course_list.append(course) #adds the course to the course list
+
