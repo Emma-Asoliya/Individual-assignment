@@ -26,8 +26,8 @@ class Course:
 
 
 #Define the 'GradeBook' class
-class GradeBook
-    def __init__(self)
+class GradeBook:
+    def __init__(self):
         self.student_list = [] #list to store all the students
         self.course_list = [] #List to store all courses
 
@@ -40,3 +40,35 @@ class GradeBook
         course = Course(name, trimester, credits)
         self.course_list.append(course) #adds the course to the course list
 
+    def register_studemt_for_course(self, student_email, course_name, grade):
+        student = next ((s for s in self.student_list if s.email == student_email), None)
+        course = ((c for c in self.course_list if c.name == course_name), None)
+        if student and course:
+            student.register_for_course(course, grade) #register the student for the course
+            student.calculate_GPA() #calculates the students GPA
+            return True
+        return False
+    
+    def calculate_ranking(self):
+        ranked_students = sorted(self.student_list, key=lambda s: s.GPA, reverse=True)
+
+    def search_by_grade(self, grade):
+        result = []
+        for student in self.student_lists:
+            for course, student_grade in student.courses_registered.items():
+                if student_grade == grade:
+                     result.append((student, course))
+        return result    
+
+    def generate_transcript(self, student_email):
+        student = next((s for s in sekf.student_list if s.email == student_email), None) 
+        if student:
+            trancsript = f"Transcript for {student.names} ({student_email}):\n"
+            transcript += "Course\tGrade\n"
+            for course, grade in student.coursess_registered.items():
+                trancsript += f"{course.name}\t{grade}\n"
+            trancsript += f"GPA: {student.GPA:.2f}"
+            return transcript 
+        return "Student not found."
+    
+          
