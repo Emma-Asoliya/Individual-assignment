@@ -16,7 +16,11 @@ class Student:
         gpa = percentage / 20
         print(f"The GPA is :{gpa:.2f}")
         return gpa
-   
+    
+    def register_for_course(self, course, grade):
+        self.courses_registered[course] = grade
+
+
 #Define the 'Course' class
 class Course:
     def __init__(self, name,trimester,credits):
@@ -71,13 +75,13 @@ class GradeBook:
             return transcript 
         return "Student not found."
 
-    def main():
+def main():
         gradebook = GradeBook()
 
         while True:
             print("GradeBook:")
-            print("1.Add student")
-            print("2.Add course")
+            print("1. Add student")
+            print("2. Add course")
             print("3. Register student for course")
             print("4. Calculate ranking")
             print("5. Search by Grade")
@@ -122,4 +126,3 @@ class GradeBook:
 
 if __name__ == "__main__":
     main()
-    
