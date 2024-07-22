@@ -105,4 +105,21 @@ class GradeBook:
                 ranked_students = gradebook.calculate_ranking()
                 print("Student Ranking by GPA:")
                 for rank, student in enumerate(ranked_students, start=1):
-                    
+                    print(f"{rank}. {student.names} ({student.email}) - GPA: {student.GPA:.2f}")
+            elif choice == '5':
+                grade = float(input("Enter grade to search for: "))
+                results = gradebook.search_by_grade(grade)
+                for student, course in results:
+                    print(f"{student.names} ({student.email}) - {course.name: {grade}}")
+            elif choice == '6':
+                email = input("Enter your student email: ")
+                transcript = gradebook.generate_transcript(email)
+                print(transcript)
+            elif choice == '7':
+                break 
+            else:
+                print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
+    
