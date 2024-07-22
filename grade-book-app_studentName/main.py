@@ -61,7 +61,7 @@ class GradeBook:
         return result    
 
     def generate_transcript(self, student_email):
-        student = next((s for s in sekf.student_list if s.email == student_email), None) 
+        student = next((s for s in self.student_list if s.email == student_email), None) 
         if student:
             trancsript = f"Transcript for {student.names} ({student_email}):\n"
             transcript += "Course\tGrade\n"
@@ -70,5 +70,39 @@ class GradeBook:
             trancsript += f"GPA: {student.GPA:.2f}"
             return transcript 
         return "Student not found."
-    
-          
+
+    def main():
+        gradebook = GradeBook()
+
+        while True:
+            print("GradeBook:")
+            print("1.Add student")
+            print("2.Add course")
+            print("3. Register student for course")
+            print("4. Calculate ranking")
+            print("5. Search by Grade")
+            print("6. Generate Transcript")
+            print("7. Exit")
+            choice = input("Enter choice:")
+
+            if choice == '1':
+                email = input("Enter your student email: ")
+                names = input("Enter student name: ")
+                gradebook.add_student(email, name)
+            elif choice == '2': 
+                name = input("Enter student email: ")   
+                trimester = input("Enter course trimester: ")
+                gradebook.add_course(name, trimester, credits)
+            elif choice =='3':
+                email = input("Enter your student email: ")
+                course_name = input("Enter course name: ")
+                grade = float(input("Enter grade: "))
+                if gradebook.register_for_course(email, course_name, grade):
+                    print("Student registered for course successfully.")
+                else:
+                    print("Unable to register student for course.")
+            elif choice == '4':
+                ranked_students = gradebook.calculate_ranking()
+                print("Student Ranking by GPA:")
+                for rank, student in enumerate(ranked_students, start=1):
+                    
