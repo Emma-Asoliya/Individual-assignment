@@ -92,7 +92,7 @@ def main():
             if choice == '1':
                 email = input("Enter your student email: ")
                 names = input("Enter student name: ")
-                gradebook.add_student(email, name)
+                gradebook.add_student(email, names)
             elif choice == '2': 
                 name = input("Enter student email: ")   
                 trimester = input("Enter course trimester: ")
